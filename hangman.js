@@ -1,14 +1,9 @@
 var inquirer = require('inquirer');
 var numGuesses = 10;
-// Number of letters in the word to be guessed
-var numLetters = 0;
 var Word = require("./Word.js");
-var wordObject = new Word();
 
 var callback = function(word, definition, example) {
  	console.log("word: " + word);
- 	console.log("definition: " + definition);
- 	console.log("example: " + example + "\n");
 
  	var letters = createLetters(word);
  	playGame(letters);
@@ -26,7 +21,11 @@ var callback = function(word, definition, example) {
  }
 
 
- 
+var createWord = function() {
+	var wordObject = new Word();
+
+	wordObject.getWord(callback);
+ } 
 
 
  var optionToPlayAgain = function() {
@@ -37,7 +36,13 @@ var callback = function(word, definition, example) {
       		name: "playAgain"
     	}
  	]).then(function (answers) {
-
+ 		if (answers.playAgain) {
+ 			numGuesses = 10;
+ 			createWord();
+ 		}
+ 		else {
+ 			console.log("Goodbye!");
+ 		}
  	});
  }
 
@@ -113,4 +118,4 @@ var callback = function(word, definition, example) {
  	return displayString;
  }
 
- wordObject.getWord(callback);
+ createWord();

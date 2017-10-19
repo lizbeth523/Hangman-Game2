@@ -6,7 +6,7 @@ var Word = function() {
 			if (error) {
 		    	return error.message;		    	
 		  	} else {
-		    	callback(entry.word.toUpperCase(), entry.definition, entry.example);
+		    	callback(entry.word.toUpperCase());
 		  	} 
 		});
 	};
