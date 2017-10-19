@@ -1,0 +1,26 @@
+{
+  "name": "hangman-game",
+  "version": "1.0.0",
+  "description": "Hangman game played on the command line",
+  "main": "hangman.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lizbeth523/Hangman-Game2.git"
+  },
+  "keywords": [
+    "hangman"
+  ],
+  "author": "Elizabeth Tom",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lizbeth523/Hangman-Game2/issues"
+  },
+  "homepage": "https://github.com/lizbeth523/Hangman-Game2#readme",
+  "dependencies": {
+    "inquirer": "^3.3.0",
+    "urban-dictionary": "^1.0.6"
+  }
+}
