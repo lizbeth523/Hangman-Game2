@@ -1,13 +1,12 @@
 var inquirer = require('inquirer');
 var lettersGuessed;
 var numGuesses;
-var Word = require("./Word.js");
 var wordMeaning;
 
 var callback = function(word, definition) {
- 	wordMeaning = definition;
-
  	var letters = createLetters(word);
+ 	wordMeaning = definition;
+ 	
  	playGame(letters);
  }
 
@@ -24,6 +23,7 @@ var callback = function(word, definition) {
 
 
 var createWord = function() {
+	var Word = require("./Word.js");
 	var wordObject = new Word();
 
 	wordObject.getWord(callback);
