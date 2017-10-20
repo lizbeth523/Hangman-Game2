@@ -56,7 +56,10 @@ var createWord = function() {
 			message: "Guess a letter! ",
 			name: "guess",
 			validate: function(value) {
-				if (lettersGuessed.includes(value.toUpperCase())) {
+				if (value.length > 1) {
+					return "Please enter only 1 letter";
+				}
+				else if (lettersGuessed.includes(value.toUpperCase())) {
 					return "You have already guessed this letter";
 				}
 				else if (value.match(/[A-Za-z]/)) {
