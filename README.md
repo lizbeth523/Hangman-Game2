@@ -1,10 +1,6 @@
 # Hangman-Game2
 Command line hangman game
 
-Before using, must run "npm install" to install the following dependencies:
-* inquirer
-* urban-dictionary
-
 ## Usage Instructions
 * Before running the program, you must run "npm install" to install the following dependencies:
   - inquirer
