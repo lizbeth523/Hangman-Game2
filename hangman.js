@@ -1,5 +1,6 @@
 var inquirer = require('inquirer');
-var numGuesses = 10;
+var lettersGuessed;
+var numGuesses;
 var Word = require("./Word.js");
 var wordMeaning;
 
@@ -38,8 +39,7 @@ var createWord = function() {
     	}
  	]).then(function (answers) {
  		if (answers.playAgain) {
- 			numGuesses = 10;
- 			createWord();
+ 			startGame();
  		}
  		else {
  			console.log("Goodbye!");
@@ -56,7 +56,10 @@ var createWord = function() {
 			message: "Guess a letter! ",
 			name: "guess",
 			validate: function(value) {
-				if (value.match(/[A-Za-z]/)) {
+				if (lettersGuessed.includes(value.toUpperCase())) {
+					return "You have already guessed this letter";
+				}
+				else if (value.match(/[A-Za-z]/)) {
 					return true;
 				}
 				else {
@@ -67,6 +70,9 @@ var createWord = function() {
 		]).then(function (answers) {
 			var containsGuess = false;
 			var displayString;
+
+			lettersGuessed.push(answers.guess.toUpperCase());
+			lettersGuessed.sort();
 
 			for (var i = 0; i < letters.length; i++) {
 				if (letters[i].value === answers.guess.toUpperCase()) {
@@ -97,6 +103,13 @@ var createWord = function() {
  }
 
 
+ var startGame = function() {
+ 	lettersGuessed = [];
+	numGuesses = 10;
+	createWord();
+ }
+
+
  var updateDisplay = function(containsGuess, letters) {
  	var displayString = ""; 
 
@@ -116,8 +129,9 @@ var createWord = function() {
  	for (i in letters) {
  		displayString += letters[i].display + " ";
  	}
+ 	displayString += "\nLetters Used: " + lettersGuessed.join(", ");
  	console.log(displayString + "\n");
  	return displayString;
  }
 
- createWord();
+ startGame();
