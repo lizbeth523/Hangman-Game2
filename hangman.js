@@ -1,9 +1,10 @@
 var inquirer = require('inquirer');
 var numGuesses = 10;
 var Word = require("./Word.js");
+var wordMeaning;
 
-var callback = function(word, definition, example) {
- 	console.log("word: " + word);
+var callback = function(word, definition) {
+ 	wordMeaning = definition;
 
  	var letters = createLetters(word);
  	playGame(letters);
@@ -81,6 +82,7 @@ var createWord = function() {
 			displayString = updateDisplay(containsGuess, letters);
 			if (!displayString.match(/_/)) {
 				console.log("You won!");
+				console.log("Definition: " + wordMeaning);
 				optionToPlayAgain();
 			}
 			else {
